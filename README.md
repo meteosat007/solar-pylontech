@@ -41,8 +41,12 @@ The Pylontech Battery Data nodes to extract data from the RS485 interface on the
 You will need to follow the many online examples of how to setup Grafana and Influxdb onto the machine which will host the database and grafana instance.
 I used this link which worked well.  https://ksummersill.medium.com/raspberry-pi-4-with-influx-telegraf-and-grafana-to-monitor-sensor-data-6487efbef42b
 
-To get the RS485 data into the USB on the pi used to connect to your Inverter and or Batteries I have used the item below from Amazon. Very cheap but works well. I have to find out how to lock each one to the required USB interface to avoid issues on reboot.
+To get the RS485 data into the USB on the pi used to connect to your Inverter and or Batteries I have used the item below from Amazon. Very cheap but works well. In order to fix the USB adapter to a fixed port I followed the guidelines in the link below and it works fine after reboot, prior to the chages it would stop working.
 
+How to fix USB to a specific port id.
+https://www.freva.com/2019/06/20/assign-fixed-usb-port-names-to-your-raspberry-pi/
+
+Cheap USB adapters that just work.
 ![RS485 USB Adapter](https://user-images.githubusercontent.com/41062235/99592383-0d773600-29e8-11eb-9223-0295719651f6.jpg)
 
 For information here are the correct request strings in ASCII for the two batteries. Info on the WEB seems out of date for the slave battery.
