@@ -49,7 +49,7 @@ https://www.freva.com/2019/06/20/assign-fixed-usb-port-names-to-your-raspberry-p
 Cheap USB adapters that just work.
 ![RS485 USB Adapter](https://user-images.githubusercontent.com/41062235/99592383-0d773600-29e8-11eb-9223-0295719651f6.jpg)
 
-For information here are the correct request strings in ASCII for the two batteries. Info on the WEB seems out of date for the slave battery.
+Here are the correct request strings in ASCII for the two batteries. Info on the WEB seems out of date for the slave battery.
 
 Master Battery              Request
 Get analog values           ~20024642E00202FD33\r
