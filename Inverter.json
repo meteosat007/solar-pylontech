@@ -1,0 +1,299 @@
+[
+    {
+        "id": "3d63431e.2f61b4",
+        "type": "tab",
+        "label": "Inverter",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "dfd65fdc.a3918",
+        "type": "function",
+        "z": "3d63431e.2f61b4",
+        "name": "Add details",
+        "func": "\nvalue = parseInt(msg.payload[1]);\nmsg.nodegroup = \"sofar-status\"\nmsg.payload = {\"Running State\": value};\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 390,
+        "y": 120,
+        "wires": [
+            [
+                "ad049fa5.092e18"
+            ]
+        ]
+    },
+    {
+        "id": "8ec48aec.d14628",
+        "type": "function",
+        "z": "3d63431e.2f61b4",
+        "name": "Add details",
+        "func": "var sign = msg.payload[0];\n\nvalue = parseInt(msg.payload[1])*10;\nmsg.nodegroup = \"sofar-energy\"\nmsg.payload = {\"PV Generation Pwr\": value};\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 390,
+        "y": 360,
+        "wires": [
+            [
+                "ad049fa5.092e18"
+            ]
+        ]
+    },
+    {
+        "id": "25edf6e1.a6deca",
+        "type": "function",
+        "z": "3d63431e.2f61b4",
+        "name": "Add details",
+        "func": "var sign = msg.payload[0];\n\nvalue = parseInt(msg.payload[1]);\nmsg.nodegroup = \"sofar-status\"\nmsg.payload = {\"Inverter Heatsink Temperature\": value};\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 390,
+        "y": 240,
+        "wires": [
+            [
+                "ad049fa5.092e18"
+            ]
+        ]
+    },
+    {
+        "id": "7086db73.93cd5c",
+        "type": "function",
+        "z": "3d63431e.2f61b4",
+        "name": "Add details",
+        "func": "var sign = msg.payload[0];\n\nvalue = parseInt(msg.payload[1]);\nmsg.nodegroup = \"sofar-status\"\nmsg.payload = {\"Inverter Internal Temperature\": value};\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 390,
+        "y": 180,
+        "wires": [
+            [
+                "ad049fa5.092e18"
+            ]
+        ]
+    },
+    {
+        "id": "ad049fa5.092e18",
+        "type": "emoncms",
+        "z": "3d63431e.2f61b4",
+        "name": "Emoncms Push",
+        "emonServer": "f135b7a.bbd49c8",
+        "nodegroup": "",
+        "datatype": "legacy",
+        "x": 720,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "d73888bf.0e0b2",
+        "type": "modbusSerial in",
+        "z": "3d63431e.2f61b4",
+        "port": "3e4fa6ab.812f8a",
+        "slaves": "1",
+        "start": "0x200",
+        "count": 1,
+        "dtype": "holding",
+        "period": "10",
+        "topic": "",
+        "name": "Running_State",
+        "x": 140,
+        "y": 140,
+        "wires": [
+            [
+                "dfd65fdc.a3918",
+                "354c59f0.4c9c56"
+            ]
+        ]
+    },
+    {
+        "id": "5c3ec7df.36c7e8",
+        "type": "modbusSerial in",
+        "z": "3d63431e.2f61b4",
+        "port": "3e4fa6ab.812f8a",
+        "slaves": "1",
+        "start": "0x238",
+        "count": 1,
+        "dtype": "holding",
+        "period": "10",
+        "topic": "",
+        "name": "InverterInternalTemp",
+        "x": 150,
+        "y": 200,
+        "wires": [
+            [
+                "7086db73.93cd5c",
+                "583c3709.33624"
+            ]
+        ]
+    },
+    {
+        "id": "f011bb3a.21262",
+        "type": "modbusSerial in",
+        "z": "3d63431e.2f61b4",
+        "port": "3e4fa6ab.812f8a",
+        "slaves": "1",
+        "start": "0x239",
+        "count": 1,
+        "dtype": "holding",
+        "period": "10",
+        "topic": "",
+        "name": "InverterHeatsinkTemp",
+        "x": 160,
+        "y": 260,
+        "wires": [
+            [
+                "25edf6e1.a6deca",
+                "434fbcc5.84ee54"
+            ]
+        ]
+    },
+    {
+        "id": "c66ed259.4291",
+        "type": "modbusSerial in",
+        "z": "3d63431e.2f61b4",
+        "port": "3e4fa6ab.812f8a",
+        "slaves": "1",
+        "start": "0x215",
+        "count": 1,
+        "dtype": "holding",
+        "period": "10",
+        "topic": "",
+        "name": "PV_Generation_Pwr",
+        "x": 150,
+        "y": 400,
+        "wires": [
+            [
+                "8ec48aec.d14628",
+                "4b44be0.1b520c4"
+            ]
+        ]
+    },
+    {
+        "id": "5abfda53.16c5cc",
+        "type": "influxdb out",
+        "z": "3d63431e.2f61b4",
+        "influxdb": "4a359ed2.54a02",
+        "name": "InfluxDB Updates",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "x": 1070,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "4b44be0.1b520c4",
+        "type": "function",
+        "z": "3d63431e.2f61b4",
+        "name": "",
+        "func": "var sign = msg.payload[0];\nconst event = Date.now();\n\nmsg.payload = [{\n    value: parseInt(msg.payload[1])*10,\n    time: new Date(event)\n},\n{\n    tag1:\"power\",\n}];\n\nmsg.measurement = \"solar\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 720,
+        "y": 400,
+        "wires": [
+            [
+                "5abfda53.16c5cc"
+            ]
+        ]
+    },
+    {
+        "id": "434fbcc5.84ee54",
+        "type": "function",
+        "z": "3d63431e.2f61b4",
+        "name": "",
+        "func": "var sign = msg.payload[0];\nconst event = Date.now();\n\nmsg.payload = [{\n    value: parseInt(msg.payload[1]),\n    time: new Date(event)\n},\n{\n    tag1:\"heatsink_temp\",\n}];\n\nmsg.measurement = \"inverter\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 720,
+        "y": 280,
+        "wires": [
+            [
+                "5abfda53.16c5cc"
+            ]
+        ]
+    },
+    {
+        "id": "583c3709.33624",
+        "type": "function",
+        "z": "3d63431e.2f61b4",
+        "name": "",
+        "func": "var sign = msg.payload[0];\nconst event = Date.now();\n\nmsg.payload = [{\n    value: parseInt(msg.payload[1]),\n    time: new Date(event)\n},\n{\n    tag1:\"internal_temp\",\n}];\n\nmsg.measurement = \"inverter\";\nreturn msg;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 720,
+        "y": 220,
+        "wires": [
+            [
+                "5abfda53.16c5cc"
+            ]
+        ]
+    },
+    {
+        "id": "354c59f0.4c9c56",
+        "type": "function",
+        "z": "3d63431e.2f61b4",
+        "name": "",
+        "func": "var sign = msg.payload[0];\nconst event = Date.now();\n\nmsg.payload = [{\n    value: parseInt(msg.payload[1]),\n    time: new Date(event)\n},\n{\n    tag1:\"state\",\n}];\n\nmsg.measurement = \"inverter\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 718,
+        "y": 151,
+        "wires": [
+            [
+                "5abfda53.16c5cc"
+            ]
+        ]
+    },
+    {
+        "id": "702a225a.24518c",
+        "type": "comment",
+        "z": "3d63431e.2f61b4",
+        "name": "Sofar HYD3600ES Inverter Modbus Connection",
+        "info": "",
+        "x": 320,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "f135b7a.bbd49c8",
+        "type": "emoncms-server",
+        "server": "http://192.168.0.1",
+        "name": ""
+    },
+    {
+        "id": "3e4fa6ab.812f8a",
+        "type": "modbusSerialConfig",
+        "port": "/dev/ttyUSB0",
+        "baud": "9600",
+        "data": "8",
+        "parity": "none",
+        "stop": "1",
+        "name": "Sofar Inverter"
+    },
+    {
+        "id": "4a359ed2.54a02",
+        "type": "influxdb",
+        "hostname": "192.168.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "yourdatabasenamehere",
+        "name": "InfluxDB",
+        "usetls": false,
+        "tls": ""
+    }
+]

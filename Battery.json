@@ -1,0 +1,375 @@
+[
+    {
+        "id": "c43313f9.c5051",
+        "type": "tab",
+        "label": "Battery",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b4fd87db.8208a",
+        "type": "function",
+        "z": "c43313f9.c5051",
+        "name": "Add details",
+        "func": "\nvalue = parseInt(msg.payload[1]);\nmsg.nodegroup = \"sofar-batt\";\nmsg.payload = {\"Battery Charge Level\": value};\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 350,
+        "y": 220,
+        "wires": [
+            [
+                "698f15eb.f0ddf4"
+            ]
+        ]
+    },
+    {
+        "id": "56e85551.aa8ea4",
+        "type": "function",
+        "z": "c43313f9.c5051",
+        "name": "Add details",
+        "func": "var sign = msg.payload[0];\n\nvalue = parseInt(msg.payload[1]);\nmsg.nodegroup = \"sofar-batt\"\nmsg.payload = {\"Battery Cycles\": value};\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 350,
+        "y": 160,
+        "wires": [
+            [
+                "698f15eb.f0ddf4"
+            ]
+        ]
+    },
+    {
+        "id": "f314385c.663988",
+        "type": "function",
+        "z": "c43313f9.c5051",
+        "name": "Add details",
+        "func": "var sign = msg.payload[0];\n\nvalue = parseInt(msg.payload[1]);\nmsg.nodegroup = \"sofar-batt\"\nmsg.payload = {\"Battery Temperature\": value};\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 350,
+        "y": 100,
+        "wires": [
+            [
+                "698f15eb.f0ddf4"
+            ]
+        ]
+    },
+    {
+        "id": "ec21f284.9d3a2",
+        "type": "function",
+        "z": "c43313f9.c5051",
+        "name": "Batt Charge",
+        "func": "var sign = msg.payload[0];\nvar value = parseInt(msg.payload[1]);\nmsg.payload = \"\";\nvar newmsg = {};\nmsg.nodegroup = \"sofar-batt\";\nnewmsg.nodegroup = \"sofar-batt\";\nif (sign == \"0xff\") {\n  msg.payload = {\"Battery Discharge Pwr\": value}; \n\n  newmsg.payload = {\"Battery Charge Pwr\": \"0\"};\n  newmsg.nodegroup = \"sofar-batt\";\n\n} else {\n  msg.payload = {\"Battery Discharge Pwr\": \"0\"};\n  value = value*10;\n  newmsg.payload = {\"Battery Charge Pwr\": value};\n  newmsg.nodegroup = \"sofar-batt\";\n\n}\nreturn [[msg, newmsg]];\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 350,
+        "y": 320,
+        "wires": [
+            [
+                "698f15eb.f0ddf4"
+            ]
+        ]
+    },
+    {
+        "id": "698f15eb.f0ddf4",
+        "type": "emoncms",
+        "z": "c43313f9.c5051",
+        "name": "Emoncms Push",
+        "emonServer": "f135b7a.bbd49c8",
+        "nodegroup": "",
+        "datatype": "legacy",
+        "x": 700,
+        "y": 20,
+        "wires": []
+    },
+    {
+        "id": "bda07da.f22928",
+        "type": "modbusSerial in",
+        "z": "c43313f9.c5051",
+        "port": "3e4fa6ab.812f8a",
+        "slaves": "1",
+        "start": "0x210",
+        "count": 1,
+        "dtype": "holding",
+        "period": "10",
+        "topic": "",
+        "name": "Battery_ChrgLevel",
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "b4fd87db.8208a",
+                "3ef99f89.69fb58"
+            ]
+        ]
+    },
+    {
+        "id": "5f8e2c69.f57b4c",
+        "type": "modbusSerial in",
+        "z": "c43313f9.c5051",
+        "port": "3e4fa6ab.812f8a",
+        "slaves": "1",
+        "start": "0x20d",
+        "count": 1,
+        "dtype": "holding",
+        "period": "10",
+        "topic": "",
+        "name": "Battery_ChargeDischargePwr",
+        "x": 140,
+        "y": 340,
+        "wires": [
+            [
+                "ec21f284.9d3a2",
+                "c121e33e.0266a",
+                "9e58b940.dabd38"
+            ]
+        ]
+    },
+    {
+        "id": "e91cb137.5ca2f",
+        "type": "modbusSerial in",
+        "z": "c43313f9.c5051",
+        "port": "3e4fa6ab.812f8a",
+        "slaves": "1",
+        "start": "0x211",
+        "count": 1,
+        "dtype": "holding",
+        "period": "10",
+        "topic": "",
+        "name": "Battery_Temp",
+        "x": 90,
+        "y": 120,
+        "wires": [
+            [
+                "f314385c.663988",
+                "a64eedcf.b6bbb"
+            ]
+        ]
+    },
+    {
+        "id": "c10b40c.6ad65c",
+        "type": "modbusSerial in",
+        "z": "c43313f9.c5051",
+        "port": "3e4fa6ab.812f8a",
+        "slaves": "1",
+        "start": "0x22c",
+        "count": 1,
+        "dtype": "holding",
+        "period": "10",
+        "topic": "",
+        "name": "Battery_Cycles",
+        "x": 100,
+        "y": 180,
+        "wires": [
+            [
+                "56e85551.aa8ea4",
+                "cc8c7888.c0ce88"
+            ]
+        ]
+    },
+    {
+        "id": "f5f88983.fbaee",
+        "type": "modbusSerial in",
+        "z": "c43313f9.c5051",
+        "port": "3e4fa6ab.812f8a",
+        "slaves": "1",
+        "start": "0x20e",
+        "count": 1,
+        "dtype": "holding",
+        "period": "10",
+        "topic": "",
+        "name": "Battery_Voltage",
+        "x": 100,
+        "y": 480,
+        "wires": [
+            [
+                "3ea6940d.71a524",
+                "91243a3f.164ee8"
+            ]
+        ]
+    },
+    {
+        "id": "3ea6940d.71a524",
+        "type": "function",
+        "z": "c43313f9.c5051",
+        "name": "Batt Volts",
+        "func": "var sign = msg.payload[0];\nvar value = parseInt(msg.payload[1])*2;\nmsg.payload = \"\";\nvar newmsg = {};\nmsg.nodegroup = \"sofar-batt\";\nnewmsg.nodegroup = \"sofar-batt\";\nif (sign == \"0xff\") {\n  msg.payload = {\"Battery Voltage\": value}; \n  value = value*0.1;\n  newmsg.payload = {\"Battery Voltage\": value};\n  newmsg.nodegroup = \"sofar-batt\";\n\n} else {\n  msg.payload = {\"Battery Voltage\": \"0\"};\n  value = value*0.1;\n  newmsg.payload = {\"Battery Voltage\": value};\n  newmsg.nodegroup = \"sofar-batt\";\n}\nreturn [[msg, newmsg]];\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 340,
+        "y": 460,
+        "wires": [
+            [
+                "698f15eb.f0ddf4"
+            ]
+        ]
+    },
+    {
+        "id": "91a6841a.aef28",
+        "type": "influxdb out",
+        "z": "c43313f9.c5051",
+        "influxdb": "4a359ed2.54a02",
+        "name": "InfluxDB Updates",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "x": 1070,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "c121e33e.0266a",
+        "type": "function",
+        "z": "c43313f9.c5051",
+        "name": "Discharge",
+        "func": "\nvar sign = msg.payload[0];\nconst event = Date.now();\nvalue = parseInt(msg.payload[1]);\n\nif (sign == \"0xff\") {\nmsg.payload = [{\n    value: value,\n    time: new Date(event)\n},\n{\n    tag1:\"discharge_pwr\",\n}];\n\nmsg.measurement = \"battery\";\nreturn msg;\n} else {\n    msg.payload = [{\n    value: 0,\n    time: new Date(event)\n},\n{\n    tag1:\"discharge_pwr\",\n}];\n\nmsg.measurement = \"battery\";\nreturn msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 680,
+        "y": 340,
+        "wires": [
+            [
+                "91a6841a.aef28"
+            ]
+        ]
+    },
+    {
+        "id": "9e58b940.dabd38",
+        "type": "function",
+        "z": "c43313f9.c5051",
+        "name": "Charge",
+        "func": "\nvar sign = msg.payload[0];\nconst event = Date.now();\nvalue = parseInt(msg.payload[1]);\n\nif (sign == \"0x00\") {\nmsg.payload = [{\n    value: value *10,\n    time: new Date(event)\n},\n{\n    tag1:\"charge_pwr\",\n}];\n\nmsg.measurement = \"battery\";\nreturn msg;\n} else {\n    msg.payload = [{\n    value: 0,\n    time: new Date(event)\n},\n{\n    tag1:\"charge_pwr\",\n}];\n\nmsg.measurement = \"battery\";\nreturn msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 680,
+        "y": 380,
+        "wires": [
+            [
+                "91a6841a.aef28"
+            ]
+        ]
+    },
+    {
+        "id": "a64eedcf.b6bbb",
+        "type": "function",
+        "z": "c43313f9.c5051",
+        "name": "",
+        "func": "var sign = msg.payload[0];\nconst event = Date.now();\n\nmsg.payload = [{\n    value: parseInt(msg.payload[1]),\n    time: new Date(event)\n},\n{\n    tag1:\"temperature\",\n}];\n\nmsg.measurement = \"battery\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 680,
+        "y": 120,
+        "wires": [
+            [
+                "91a6841a.aef28"
+            ]
+        ]
+    },
+    {
+        "id": "cc8c7888.c0ce88",
+        "type": "function",
+        "z": "c43313f9.c5051",
+        "name": "",
+        "func": "var sign = msg.payload[0];\nconst event = Date.now();\n\nmsg.payload = [{\n    value: parseInt(msg.payload[1]),\n    time: new Date(event)\n},\n{\n    tag1:\"cycles\",\n}];\n\nmsg.measurement = \"battery\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 680,
+        "y": 180,
+        "wires": [
+            [
+                "91a6841a.aef28"
+            ]
+        ]
+    },
+    {
+        "id": "3ef99f89.69fb58",
+        "type": "function",
+        "z": "c43313f9.c5051",
+        "name": "",
+        "func": "var sign = msg.payload[0];\nconst event = Date.now();\nvalue = parseInt(msg.payload[1]);\n\nmsg.payload = [{\n    value: value,\n    time: new Date(event)\n},\n{\n    tag1:\"charge_level\",\n}];\n\nmsg.measurement = \"battery\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 680,
+        "y": 240,
+        "wires": [
+            [
+                "91a6841a.aef28"
+            ]
+        ]
+    },
+    {
+        "id": "91243a3f.164ee8",
+        "type": "function",
+        "z": "c43313f9.c5051",
+        "name": "",
+        "func": "var sign = msg.payload[0];\nconst event = Date.now();\nvalue = parseInt(msg.payload[1])*2;\n\nmsg.payload = [{\n    value: value*0.1,\n    time: new Date(event)\n},\n{\n    tag1:\"voltage\",\n}];\n\nmsg.measurement = \"battery\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 680,
+        "y": 480,
+        "wires": [
+            [
+                "91a6841a.aef28"
+            ]
+        ]
+    },
+    {
+        "id": "b39c583d.6b437",
+        "type": "comment",
+        "z": "c43313f9.c5051",
+        "name": "Sofar HYD3600ES Inverter Modbus Connection",
+        "info": "",
+        "x": 320,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "f135b7a.bbd49c8",
+        "type": "emoncms-server",
+        "server": "http://192.168.0.1",
+        "name": ""
+    },
+    {
+        "id": "3e4fa6ab.812f8a",
+        "type": "modbusSerialConfig",
+        "port": "/dev/ttyUSB0",
+        "baud": "9600",
+        "data": "8",
+        "parity": "none",
+        "stop": "1",
+        "name": "Sofar Inverter"
+    },
+    {
+        "id": "4a359ed2.54a02",
+        "type": "influxdb",
+        "hostname": "192.168.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "yourdatabasenamehere",
+        "name": "InfluxDB",
+        "usetls": false,
+        "tls": ""
+    }
+]

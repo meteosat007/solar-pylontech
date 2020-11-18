@@ -1,0 +1,696 @@
+[
+    {
+        "id": "85c6bf8c.b4fea8",
+        "type": "tab",
+        "label": "Pylontech Battery Master",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "b1e2a5cb.072218",
+        "type": "inject",
+        "z": "85c6bf8c.b4fea8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 150,
+        "y": 180,
+        "wires": [
+            [
+                "c9040f8b.b2d058"
+            ]
+        ]
+    },
+    {
+        "id": "c9040f8b.b2d058",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Get Analog Values",
+        "func": "msg.payload = \"~20024642E00202FD33\\r\";\nreturn msg;\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 370,
+        "y": 180,
+        "wires": [
+            [
+                "323631c6.14155e"
+            ]
+        ]
+    },
+    {
+        "id": "66542cde.49a89c",
+        "type": "split",
+        "z": "85c6bf8c.b4fea8",
+        "name": "",
+        "splt": "1",
+        "spltType": "len",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": true,
+        "addname": "",
+        "x": 410,
+        "y": 280,
+        "wires": [
+            [
+                "4aa589cd.2c3338"
+            ]
+        ]
+    },
+    {
+        "id": "4aa589cd.2c3338",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "",
+        "func": "var input = msg.payload;\nvar part = msg.parts.index;\nif (input == '~'){\n    msg.payload = '126';\n    msg.parts.index = part;\n    return msg;\n} else if (input == '0'){\n    msg.payload = '0';\n    msg.parts.index = part;\n    return msg;\n} else if (input == '1'){\n    msg.payload = '1';\n    msg.parts.index = part;\n    return msg;   \n} else if (input == '2'){\n    msg.payload = '2';\n    msg.parts.index = part;\n    return msg;   \n} else if (input == '3'){\n    msg.payload = '3';\n    msg.parts.index = part;\n    return msg;    \n} else if (input == '4'){\n    msg.payload = '4';\n    msg.parts.index = part;\n    return msg;    \n} else if (input == '5'){\n    msg.payload = '5';\n    msg.parts.index = part;\n    return msg;    \n} else if (input == '6'){\n    msg.payload = '6';\n    msg.parts.index = part;\n    return msg;    \n} else if (input == '7'){\n    msg.payload = '7';\n    msg.parts.index = part;\n    return msg;    \n} else if (input == '8'){\n    msg.payload = '8';\n    msg.parts.index = part;\n    return msg;    \n} else if (input == '9'){\n    msg.payload = '9';\n    msg.parts.index = part;\n    return msg;   \n} else if (input == 'A'){\n    msg.payload = 'A';\n    msg.parts.index = part;\n    return msg;\n} else if (input == 'B'){\n    msg.payload = 'B';\n    msg.parts.index = part;\n    return msg;\n} else if (input == 'C'){\n    msg.payload = 'C';\n    msg.parts.index = part;\n    return msg;\n} else if (input == 'D'){\n    msg.payload = 'D';\n    msg.parts.index = part;\n    return msg;\n} else if (input == 'E'){\n    msg.payload = 'E';\n    msg.parts.index = part;\n    return msg;\n} else if (input == 'F'){\n    msg.payload = 'F';\n    msg.parts.index = part;\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 280,
+        "y": 380,
+        "wires": [
+            [
+                "594db9ff.c1fb3"
+            ]
+        ]
+    },
+    {
+        "id": "594db9ff.c1fb3",
+        "type": "join",
+        "z": "85c6bf8c.b4fea8",
+        "name": "",
+        "mode": "custom",
+        "build": "array",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "parts.index",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "139",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 430,
+        "y": 380,
+        "wires": [
+            [
+                "1d874396.dd87cc",
+                "fa27c5a1.0936e8",
+                "3233fe.52d47c02",
+                "72b7d2c6.888424",
+                "be3072af.aa6bb",
+                "dfb22c2c.66a1a8",
+                "6a2494d5.d924d4",
+                "6650f7f6.b7578",
+                "6f51e1f2.b36ac8",
+                "564cb24e.7ddfe4",
+                "3c681730.802278",
+                "bd2458e6.c181e",
+                "ea5a1b3b.7c8738",
+                "9a837691.48535",
+                "52b76c76.ea6f84",
+                "8d94b128.a38438",
+                "f82fc763.c16b08",
+                "6faf805.0e859",
+                "68dfb0f3.6f375",
+                "648bdab3.91beb4",
+                "662dec6c.4b2fa4",
+                "a952691c.26e6a",
+                "a46a3891.5805d8",
+                "a45e3de6.e2229",
+                "8834d234.d8ff38",
+                "c31374a2.f292f8",
+                "d01bfa45.80cf98"
+            ]
+        ]
+    },
+    {
+        "id": "1d874396.dd87cc",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Battery Cycles",
+        "func": "var input = {};\nvar cycle = \"\";\ninput = msg.payload;\nif (input[0] == '126'){\n    cycle = input[119] + input[120] + input[121] + input [122]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle),\n    time: new Date(event)\n    },\n    {\n    tag1:\"cycles\",\n    }];  \n    msg.measurement = \"master-battery\"; \n    return msg;    \n} else {\n\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 820,
+        "y": 40,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "fa27c5a1.0936e8",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Remaining Capacity",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    const event = Date.now();\n    var cycle = input[123] + input[124] + input[125] + input [126] + input[127] + input [128]\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"remaining-capacity\",\n    }]; \n    msg.measurement = \"master-battery\";\n    return msg; \n} else {\n\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 840,
+        "y": 80,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "3233fe.52d47c02",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Pack Voltage",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[105] + input[106] + input[107] + input [108]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"pack-voltage\",\n    }];\n    msg.measurement = \"master-battery\";  \n    return msg; \n} else {\n\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 810,
+        "y": 120,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "72b7d2c6.888424",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Total Capacity",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[129] + input[130] + input[131] + input [132] + input[133] + input [134]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"total-capacity\",\n    }];\n    msg.measurement = \"master-battery\";   \n    return msg; \n} else {\n\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 820,
+        "y": 160,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "be3072af.aa6bb",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Cell 1",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[19] + input[20] + input[21] + input [22]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"cell1\",\n    }];\n    msg.measurement = \"master-battery\";\n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 200,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "dfb22c2c.66a1a8",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Cell 2",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[23] + input[24] + input[25] + input [26]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"cell2\",\n    }];\n    msg.measurement = \"master-battery\"; \n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 240,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "6a2494d5.d924d4",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Cell 3",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[27] + input[28] + input[29] + input [30]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"cell3\",\n    }];\n    msg.measurement = \"master-battery\"; \n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 280,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "6650f7f6.b7578",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Cell 4",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[31] + input[32] + input[33] + input [34]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"cell4\",\n    }];\n    msg.measurement = \"master-battery\";  \n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 320,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "c9abcfc0.6829f",
+        "type": "influxdb out",
+        "z": "85c6bf8c.b4fea8",
+        "influxdb": "4a359ed2.54a02",
+        "name": "InfluxDB Updates",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "x": 1250,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "6f51e1f2.b36ac8",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Cell 5",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[19] + input[20] + input[21] + input [22]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"cell5\",\n    }];\n    msg.measurement = \"master-battery\";\n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 360,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "564cb24e.7ddfe4",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Cell 6",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[23] + input[24] + input[25] + input [26]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"cell6\",\n    }];\n    msg.measurement = \"master-battery\"; \n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 400,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "3c681730.802278",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Cell 7",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[27] + input[28] + input[29] + input [30]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"cell7\",\n    }];\n    msg.measurement = \"master-battery\"; \n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 440,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "bd2458e6.c181e",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Cell 8",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[31] + input[32] + input[33] + input [34]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"cell8\",\n    }];\n    msg.measurement = \"master-battery\";  \n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 480,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "ea5a1b3b.7c8738",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Cell 9",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[19] + input[20] + input[21] + input [22]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"cell9\",\n    }];\n    msg.measurement = \"master-battery\";\n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 520,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "9a837691.48535",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Cell 10",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[23] + input[24] + input[25] + input [26]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"cell10\",\n    }];\n    msg.measurement = \"master-battery\"; \n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 560,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "52b76c76.ea6f84",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Cell 11",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[27] + input[28] + input[29] + input [30]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"cell11\",\n    }];\n    msg.measurement = \"master-battery\"; \n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 600,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "8d94b128.a38438",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Cell 12",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[31] + input[32] + input[33] + input [34]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"cell12\",\n    }];\n    msg.measurement = \"master-battery\";  \n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 640,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "f82fc763.c16b08",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Cell 13",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[19] + input[20] + input[21] + input [22]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"cell13\",\n    }];\n    msg.measurement = \"master-battery\";\n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 680,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "6faf805.0e859",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Cell 14",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[23] + input[24] + input[25] + input [26]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"cell14\",\n    }];\n    msg.measurement = \"master-battery\"; \n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 720,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "68dfb0f3.6f375",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Cell 15",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[27] + input[28] + input[29] + input [30]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"cell15\",\n    }];\n    msg.measurement = \"master-battery\"; \n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 760,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "648bdab3.91beb4",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Cell 16",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[31] + input[32] + input[33] + input [34]\n    const event = Date.now();\n    msg.payload = [{\n    value: parseInt(\"0x\"+cycle)/1000,\n    time: new Date(event)\n    },\n    {\n    tag1:\"cell16\",\n    }];\n    msg.measurement = \"master-battery\";  \n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 790,
+        "y": 800,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "662dec6c.4b2fa4",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Temp BMS",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[81] + input[82] + input[83] + input [84]\n    const event = Date.now();\n    msg.payload = [{\n    value: (parseInt(\"0x\"+cycle)-2731)/10,\n    time: new Date(event)\n    },\n    {\n    tag1:\"temp-bms\",\n    }];\n    msg.measurement = \"master-battery\";  \n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 810,
+        "y": 840,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "a952691c.26e6a",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Temp Cell 1-4",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[85] + input[86] + input[87] + input [88]\n    const event = Date.now();\n    msg.payload = [{\n    value: (parseInt(\"0x\"+cycle)-2731)/10,\n    time: new Date(event)\n    },\n    {\n    tag1:\"temp-cell1-4\",\n    }];\n    msg.measurement = \"master-battery\";  \n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 820,
+        "y": 880,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "a46a3891.5805d8",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Temp Cell 5-8",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[89] + input[90] + input[91] + input [92]\n    const event = Date.now();\n    msg.payload = [{\n    value: (parseInt(\"0x\"+cycle)-2731)/10,\n    time: new Date(event)\n    },\n    {\n    tag1:\"temp-cell5-8\",\n    }];\n    msg.measurement = \"master-battery\";  \n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 820,
+        "y": 920,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "a45e3de6.e2229",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Temp Cell 9-12",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[93] + input[94] + input[95] + input [96]\n    const event = Date.now();\n    msg.payload = [{\n    value: (parseInt(\"0x\"+cycle)-2731)/10,\n    time: new Date(event)\n    },\n    {\n    tag1:\"temp-cell9-12\",\n    }];\n    msg.measurement = \"master-battery\";  \n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 820,
+        "y": 960,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "8834d234.d8ff38",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Temp Cell 13-16",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var cycle = input[97] + input[98] + input[99] + input [100]\n    const event = Date.now();\n    msg.payload = [{\n    value: (parseInt(\"0x\"+cycle)-2731)/10,\n    time: new Date(event)\n    },\n    {\n    tag1:\"temp-cell13-16\",\n    }];\n    msg.measurement = \"master-battery\";  \n    return msg; \n} else {\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 820,
+        "y": 1000,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "323631c6.14155e",
+        "type": "serial request",
+        "z": "85c6bf8c.b4fea8",
+        "name": "",
+        "serial": "60a80637.b7d0c8",
+        "x": 220,
+        "y": 280,
+        "wires": [
+            [
+                "66542cde.49a89c"
+            ]
+        ]
+    },
+    {
+        "id": "c31374a2.f292f8",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "SOC %",
+        "func": "var input = {};\ninput = msg.payload;\nif (input[0] == '126'){\n    var total = input[129] + input[130] + input[131] + input [132] + input[133] + input [134]\n    var remain = input[123] + input[124] + input[125] + input [126] + input[127] + input [128]\n    \n    \n    var soc = (parseInt(\"0x\"+remain) / parseInt(\"0x\"+total)) *100\n    const event = Date.now();\n    msg.payload = [{\n    value: soc,\n    time: new Date(event)\n    },\n    {\n    tag1:\"soc\",\n    }];\n    msg.measurement = \"master-battery\";   \n    return msg; \n} else {\n\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 800,
+        "y": 1040,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "d01bfa45.80cf98",
+        "type": "function",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Current",
+        "func": "var input = {};\ninput = msg.payload;\n\nif (input[0] == '126') {\n    var cd = input[101];\n    if (cd == 'F') {\n    var current = input[102] + input[103] + input [104]\n    var amps = parseInt(\"0x\"+current)/1000\n    const event = Date.now();\n    msg.payload = [{\n    value: amps,\n    time: new Date(event)\n    },\n    {\n    tag1:\"discharge\",\n    }];\n    msg.measurement = \"master-battery\";  \n    return msg;\n    } else {\n    var d = input[101];\n    if (d == '0') {\n    var current1 = input[102] + input[103] + input [104]\n    var amps1 = parseInt(\"0x\"+current1)/1000\n    const event = Date.now();\n    msg.payload = [{\n    value: amps1,\n    time: new Date(event)\n    },\n    {\n    tag1:\"charge\",\n    }];\n    msg.measurement = \"master-battery\";  \n    return msg;\n    } else {\n    }\n}\n    \n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 800,
+        "y": 1080,
+        "wires": [
+            [
+                "c9abcfc0.6829f"
+            ]
+        ]
+    },
+    {
+        "id": "78882b6a.02199c",
+        "type": "comment",
+        "z": "85c6bf8c.b4fea8",
+        "name": "Pylontech Master Battery RS485",
+        "info": "",
+        "x": 240,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "4a359ed2.54a02",
+        "type": "influxdb",
+        "hostname": "192.168.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "yourdatabasenamehere",
+        "name": "InfluxDB",
+        "usetls": false,
+        "tls": ""
+    },
+    {
+        "id": "60a80637.b7d0c8",
+        "type": "serial-port",
+        "serialport": "/dev/ttyUSB1",
+        "serialbaud": "115200",
+        "databits": "8",
+        "parity": "none",
+        "stopbits": "1",
+        "waitfor": "~",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "139",
+        "bin": "false",
+        "out": "count",
+        "addchar": "",
+        "responsetimeout": "5000"
+    }
+]
