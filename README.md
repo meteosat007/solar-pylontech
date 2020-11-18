@@ -17,3 +17,6 @@ The command above will install the latest versions of Node, Npm and Node-red aut
 
 To start Node-red enter the URL below using your ip address for the pi.             http://x.x.x.x:1880
 
+[Sofar Battery Data.pdf](https://github.com/meteosat007/solar-pylontech/files/5562830/Sofar.Battery.Data.pdf)
+
+[Sofar Inverter Data.pdf](https://github.com/meteosat007/solar-pylontech/files/5562832/Sofar.Inverter.Data.pdf)
