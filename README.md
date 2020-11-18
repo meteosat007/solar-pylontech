@@ -7,7 +7,7 @@ I have spent many hours looking at all of the content on the WEB to get connecte
 
 After trying Python and Javascript options I have decided to go with Node-Red due to its easy block appproach to getting the results quickly with the least amount of complexity. Over the years I have learnt that if its simple to set-up, its more likely to just keep on running.
 
-Here I will share my Node-red flows and photos of the physical connections, the USB-RS485 adpters used on the raspberry Pi loacted close to the inverter and running Node-red.
+Here I will share my Node-red flows and photos of the physical connections, the USB-RS485 adapters used on the raspberry Pi located close to the inverter and running Node-red.
 
 Once you have your pi OS installed, set-up Wifi and updated the OS using the normal methods shown on the WEB you can install Node-red automatically to the latest version using the command below which is used at the command prompt vis ssh or in a terminal window on the raspberry pi.
 
@@ -37,6 +37,11 @@ The Pylontech Battery Data nodes to extract data from the RS485 interface on the
 The Pylontech Battery Data nodes to extract data from the RS485 interface on the Master Battery via the link cable.
 
 ![Pylontech Slave Battery](https://user-images.githubusercontent.com/41062235/99590852-d142d600-29e5-11eb-9bf9-5ce377ab07b3.jpg)
+
+You will need to follow the many online examples of how to setup Grafana and Influxdb onto the machine which will host the database and grafana instance.
+I used this link which worked well.  https://ksummersill.medium.com/raspberry-pi-4-with-influx-telegraf-and-grafana-to-monitor-sensor-data-6487efbef42b
+
+
 
 
 
