@@ -17,6 +17,26 @@ The command above will install the latest versions of Node, Npm and Node-red aut
 
 To start Node-red enter the URL below using your ip address for the pi.             http://x.x.x.x:1880
 
-[Sofar Battery Data.pdf](https://github.com/meteosat007/solar-pylontech/files/5562830/Sofar.Battery.Data.pdf)
+You will need to ensure that you install the listed nodes below into Node-red Manage Palette
 
-[Sofar Inverter Data.pdf](https://github.com/meteosat007/solar-pylontech/files/5562832/Sofar.Inverter.Data.pdf)
+![Node-red Palette](https://user-images.githubusercontent.com/41062235/99590834-cd16b880-29e5-11eb-8084-f3150aaf1ce8.jpg)
+
+The Sofar Battery Data nodes to extract battery related data via the inveter over Modbus. 
+
+![Sofar Battery Data](https://user-images.githubusercontent.com/41062235/99590855-d30c9980-29e5-11eb-889f-7c0435c73496.jpg)
+
+The Sofar Inverter Data nodes to extract inverter related data via the inveter over Modbus. 
+
+![Sofar Inverter Data](https://user-images.githubusercontent.com/41062235/99590861-d56ef380-29e5-11eb-8deb-cae8469d25ac.jpg)
+
+The Pylontech Battery Data nodes to extract data from the RS485 interface on the Master battery.
+
+![Pylontech Master Battery](https://user-images.githubusercontent.com/41062235/99590845-cf791280-29e5-11eb-9d6f-6475cd8493e2.jpg)
+
+The Pylontech Battery Data nodes to extract data from the RS485 interface on the Master Battery via the link cable.
+
+![Pylontech Slave Battery](https://user-images.githubusercontent.com/41062235/99590852-d142d600-29e5-11eb-9bf9-5ce377ab07b3.jpg)
+
+
+
+
