@@ -15,3 +15,5 @@ bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/mast
 
 The command above will install the latest versions of Node, Npm and Node-red automatically and if no errors occur it takes about 5 minutes to complete.
 
+To start Node-red enter the URL below using your ip address for the pi.             http://x.x.x.x:1880
+
