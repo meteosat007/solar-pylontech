@@ -1,7 +1,7 @@
 # solar-pylontech
 How to connect to a Sofar HYD3600 Inveter and 2 Pylontech US3000 batteries delivering the measures into an Influxdb, visualising them with Grafana all through the Node-red platform.
 
-![Grafana Dashboard](https://github.com/meteosat007/solar-pylontech/main/Grafana.jpg?raw=true)
+![Grafana](https://user-images.githubusercontent.com/41062235/99589010-4eb91700-29e3-11eb-87da-2c0199f952e3.jpg)
 
 I have spent many hours looking at all of the content on the WEB to get connected vis Modbus to the Sofar HYD3600 Inveter and via RS485 to 2 Pylontech batteries in parallel. It would seem that all of the currrent WEB resources for the batteries use different messages which finally was resolved after trial and error.
 
