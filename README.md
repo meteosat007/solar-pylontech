@@ -64,38 +64,5 @@ Request
 Response
 ~20024600F07A11020F0CC50CC30CC50CC40CC40CC60CC50CC40CC70CC50CC60CC60CC50CC60CC6050B370B230B230B2D0B2DFFE0BF8DFFFF04FFFF001B00BBE4012110E1D6      ASCII
 
-HEX Broken down by measure with 139 HEX digits                                                  Hex position
-7e 32 30 30 32 34 36 30 30 46 30 37 41 31 31 30 32                                              0,16
-30 46                   No of cells                                                             17,18
-30 43 43 35             cell 1 =                                                                19,22
-30 43 43 33                                                                                     23,26
-30 43 43 35                                                                                     27,30
-30 43 43 34                                                                                     31,34
-30 43 43 34                                                                                     35.38
-30 43 43 36                                                                                     39,42
-30 43 43 35                                                                                     43,46
-30 43 43 34                                                                                     47,50
-30 43 43 37                                                                                     51,54
-30 43 43 35                                                                                     55.58
-30 43 43 36                                                                                     59,62
-30 43 43 36                                                                                     63,66
-30 43 43 35                                                                                     67,70
-30 43 43 36                                                                                     71,74
-30 43 43 36             Cell 15 =                                                               75,78
-30 35                   Temp No  = 5                                                            79,80
-30 42 33 37             Temp BMS Board                                                          81,84    
-30 42 32 33             Temp Avg Cell 1-4                                                       85,88
-30 42 32 33             Temp Avg Cell 5-8                                                       89,92
-30 42 32 44             Temp Avg Cell 9-12                                                      93,96
-30 42 32 44             Temp Avg Cell 13-15                                                     97,100
-46 46 45 30             Current now first 46=Negative/discharge  0=positive/Charge  -4064mA     101,104
-42 46 38 44             Pack Voltage =49037mv                                                   105,108                             
-46 46 46 46             Remaining Capacity 1                                                    109,112
-30 34                   User Defined Number 4                                                   113,114
-46 46 46 46             Module Total Capacity 1                                                 115,118
-30 30 31 42             Cycles =27                                                              119,122
-30 30 42 42 45 34       Remaining Capacity 2 48100mAh                                           123,128
-30 31 32 31 31 30       Module Total Capacity 2  74000mAh                                       129,134
-45 31 44 36                                                                                     135,138
 
 
